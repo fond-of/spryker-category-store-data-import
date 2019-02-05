@@ -3,9 +3,8 @@
 namespace FondOfSpryker\Zed\CategoryStoreDataImport\Business\Model\Reader;
 
 use ArrayObject;
-use FondOfSpryker\Zed\CategoryStoreDataImport\Business\Model\Reader\CategoryReaderInterface;
+use FondOfSpyker\Zed\CategoryStoreDataImport\Business\Exception\CategoryByKeyAndStoreNotFoundException;
 use Orm\Zed\Category\Persistence\SpyCategoryQuery;
-use Spryker\Zed\CategoryDataImport\Business\Exception\CategoryByKeyNotFoundException;
 use Spryker\Zed\CategoryDataImport\Business\Model\Reader\CategoryReader as SprykerCategoryReader;
 
 class CategoryReader extends SprykerCategoryReader implements CategoryReaderInterface
@@ -29,14 +28,14 @@ class CategoryReader extends SprykerCategoryReader implements CategoryReaderInte
 
     public function __construct()
     {
-        $this->storeCategories = array();
+        $this->storeCategories = [];
         $this->categoryUrls = new ArrayObject();
     }
 
     /**
      * @param string $categoryKey
      *
-     * @throws \Spryker\Zed\CategoryDataImport\Business\Exception\CategoryByKeyNotFoundException
+     * @throws \FondOfSpyker\Zed\CategoryStoreDataImport\Business\Exception\CategoryByKeyAndStoreNotFoundException
      *
      * @return int
      */
@@ -47,7 +46,7 @@ class CategoryReader extends SprykerCategoryReader implements CategoryReaderInte
         }
 
         if (!$this->storeCategories[$idStore][$categoryKey]) {
-            throw new CategoryByKeyNotFoundException(sprintf(
+            throw new CategoryByKeyAndStoreNotFoundException(sprintf(
                 'Category by key "%s" for the store "%s" not found. Maybe you have a typo in the category key.',
                 $categoryKey,
                 $idStore
@@ -72,6 +71,5 @@ class CategoryReader extends SprykerCategoryReader implements CategoryReaderInte
                 static::ID_CATEGORY_NODE => $categoryEntity->getNodes()->getFirst()->getIdCategoryNode(),
             ];
         }
-
     }
 }

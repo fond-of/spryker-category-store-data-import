@@ -14,6 +14,7 @@ use Orm\Zed\Store\Persistence\SpyStoreQuery;
 use Orm\Zed\Url\Persistence\SpyUrlQuery;
 use Propel\Runtime\ActiveQuery\Criteria;
 use Spryker\Shared\Kernel\Store;
+use Spryker\Shared\Log\LoggerTrait;
 use Spryker\Zed\Category\Dependency\CategoryEvents;
 use Spryker\Zed\CategoryDataImport\Business\Model\CategoryWriterStep as SprykerCategoryWriterStep;
 use Spryker\Zed\DataImport\Business\Model\DataImportStep\AddLocalesStep;
@@ -25,6 +26,8 @@ use Spryker\Zed\Url\Dependency\UrlEvents;
  */
 class CategoryWriterStep extends SprykerCategoryWriterStep
 {
+    use LoggerTrait;
+
     const KEY_STORE = 'store';
 
     /**
@@ -91,7 +94,6 @@ class CategoryWriterStep extends SprykerCategoryWriterStep
      */
     protected function findOrCreateNode(SpyCategory $categoryEntity, DataSetInterface $dataSet)
     {
-        $idStore = $this->getIdStore($dataSet[static::KEY_STORE]);
         $categoryNodeEntity = SpyCategoryNodeQuery::create()
             ->filterByCategory($categoryEntity)
             ->findOneOrCreate();
@@ -99,13 +101,14 @@ class CategoryWriterStep extends SprykerCategoryWriterStep
         if (!empty($dataSet[static::KEY_PARENT_CATEGORY_KEY]) && !empty($dataSet[static::KEY_PARENT_CATEGORY_KEY])) {
             $idParentCategoryNode = $this->categoryReader->getIdCategoryNodeByCategoryKeyAndIdStore(
                 $dataSet[static::KEY_PARENT_CATEGORY_KEY],
-                $idStore
+                $categoryEntity->getFkStore()
             );
 
             $categoryNodeEntity->setFkParentCategoryNode($idParentCategoryNode);
         }
-
+        
         $categoryNodeEntity->fromArray($dataSet->getArrayCopy());
+        $categoryNodeEntity->setFkStore($categoryEntity->getFkStore());
 
         if ($categoryNodeEntity->isNew() || $categoryNodeEntity->isModified()) {
             $categoryNodeEntity->save();
@@ -133,7 +136,7 @@ class CategoryWriterStep extends SprykerCategoryWriterStep
 
             $urlEntity
                 ->setUrl($url)
-                ->setFkStore($idStore);
+                ->setFkStore($categoryEntity->getFkStore());
 
             if ($urlEntity->isNew() || $urlEntity->isModified()) {
                 $urlEntity->save();
@@ -160,9 +163,10 @@ class CategoryWriterStep extends SprykerCategoryWriterStep
         $languageIdentifier = $this->getLanguageIdentifier($idLocale, $dataSet);
         $urlPathParts = [$languageIdentifier];
         if (!$categoryNodeEntity->getIsRoot()) {
-            $parentUrl = $this->categoryReader->getParentUrl(
+            $parentUrl = $this->categoryReader->getParentUrlByCategoryKeyLocaleAndStore(
                 $dataSet[static::KEY_PARENT_CATEGORY_KEY],
-                $idLocale
+                $idLocale,
+                $categoryNodeEntity->getFkStore()
             );
             $urlPathParts = explode('/', ltrim($parentUrl, '/'));
             $urlPathParts[] = $categoryAttributesEntity->getName();

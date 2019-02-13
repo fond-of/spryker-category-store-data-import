@@ -1,6 +1,6 @@
 <?php
 
-namespace FondOfSpyker\Zed\CategoryStoreDataImport\Business\Exception;
+namespace FondOfSpryker\Zed\CategoryStoreDataImport\Business\Exception;
 
 use Spryker\Zed\DataImport\Business\Exception\DataImportException;
 

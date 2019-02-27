@@ -6,5 +6,4 @@ use Spryker\Zed\CategoryDataImport\Business\CategoryDataImportFacadeInterface as
 
 interface CategoryStoreDataImportFacadeInterface extends SprykerCategoryDataImportFacadeInterface
 {
-
 }

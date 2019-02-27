@@ -3,14 +3,12 @@
 namespace FondOfSpryker\Zed\CategoryStoreDataImport\Business\Model\Reader;
 
 use Spryker\Zed\CategoryDataImport\Business\Model\Reader\CategoryReaderInterface  as SprykerCategoryReaderInterface;
-use Orm\Zed\Category\Persistence\SpyCategory;
-use Orm\Zed\Category\Persistence\SpyCategoryNode;
 
 interface CategoryReaderInterface extends SprykerCategoryReaderInterface
 {
     /**
-     * @param $categoryKey
-     * @param $idStore
+     * @param string $categoryKey
+     * @param int $idStore
      *
      * @return int
      */

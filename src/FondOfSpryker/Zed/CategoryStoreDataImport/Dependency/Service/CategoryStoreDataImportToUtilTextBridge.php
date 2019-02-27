@@ -2,14 +2,13 @@
 
 namespace FondOfSpryker\Zed\CategoryStoreDataImport\Dependency\Service;
 
-use FondOfSpryker\Zed\CategoryStoreDataImport\Dependency\Service\CategoryStoreDataImportToUtilTextInterface;
-
 class CategoryStoreDataImportToUtilTextBridge implements CategoryStoreDataImportToUtilTextInterface
 {
     /**
      * @var \Spryker\Service\UtilText\UtilTextServiceInterface
      */
     protected $utilTextService;
+
     /**
      * @param \Spryker\Service\UtilText\UtilTextServiceInterface $utilTextService
      */
@@ -17,6 +16,7 @@ class CategoryStoreDataImportToUtilTextBridge implements CategoryStoreDataImport
     {
         $this->utilTextService = $utilTextService;
     }
+
     /**
      * @param string $value
      *

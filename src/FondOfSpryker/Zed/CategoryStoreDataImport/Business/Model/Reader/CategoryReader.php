@@ -66,7 +66,7 @@ class CategoryReader extends SprykerCategoryReader implements CategoryReaderInte
     /**
      * @param string $categoryKey
      *
-     * @throws \FondOfSpyker\Zed\CategoryStoreDataImport\Business\Exception\CategoryByKeyAndStoreNotFoundException
+     * @throws \FondOfSpryker\Zed\CategoryStoreDataImport\Business\Exception\CategoryByKeyAndStoreNotFoundException
      *
      * @return int
      */
@@ -88,6 +88,7 @@ class CategoryReader extends SprykerCategoryReader implements CategoryReaderInte
     }
 
     /**
+     *
      * @return void
      */
     protected function loadCategoryKeys()
@@ -108,7 +109,7 @@ class CategoryReader extends SprykerCategoryReader implements CategoryReaderInte
      * @param string $categoryKey
      * @param int $idLocale
      *
-     * @throws \FondOfSpyker\Zed\CategoryStoreDataImport\Business\Exception\CategoryByKeyAndStoreNotFoundException
+     * @throws \FondOfSpryker\Zed\CategoryStoreDataImport\Business\Exception\CategoryByKeyAndStoreNotFoundException
      *
      * @return string
      */

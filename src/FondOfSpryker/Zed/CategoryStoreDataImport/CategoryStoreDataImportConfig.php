@@ -18,5 +18,4 @@ class CategoryStoreDataImportConfig extends SprykerCategoryDataImportConfig
             static::IMPORT_TYPE_CATEGORY_WITH_STORE
         );
     }
-
 }

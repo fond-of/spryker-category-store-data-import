@@ -15,7 +15,7 @@ class CategoryStoreDataImportDependencyProvider extends SprykerCategoryDataImpor
      *
      * @return \Spryker\Zed\Kernel\Container
      */
-     public function provideBusinessLayerDependencies(Container $container)
+    public function provideBusinessLayerDependencies(Container $container)
     {
         $container = parent::provideBusinessLayerDependencies($container);
 

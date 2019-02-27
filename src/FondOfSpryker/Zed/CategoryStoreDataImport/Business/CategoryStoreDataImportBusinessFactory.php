@@ -9,7 +9,7 @@ use FondOfSpryker\Zed\CategoryStoreDataImport\Dependency\Service\CategoryStoreDa
 use Spryker\Zed\CategoryDataImport\Business\CategoryDataImportBusinessFactory as SprykerCategoryDataImportBusinessFactory;
 
 /**
- * @method \FondOFfSpryker\Zed\CategoryStoreDataImport\CategoryStoreDataImportConfig getConfig()
+ * @method \FondOfSpryker\Zed\CategoryStoreDataImport\CategoryStoreDataImportConfig getConfig()
  */
 class CategoryStoreDataImportBusinessFactory extends SprykerCategoryDataImportBusinessFactory
 {
@@ -38,7 +38,7 @@ class CategoryStoreDataImportBusinessFactory extends SprykerCategoryDataImportBu
     }
 
     /**
-     * @return \FondOfSpryker\Zed\CategoryStoreDataImport\Business\Model\Reader\CategoryRnterface
+     * @return \FondOfSpryker\Zed\CategoryStoreDataImport\Business\Model\Reader\CategoryReaderInterface
      */
     protected function createCategoryRepository()
     {
@@ -57,7 +57,8 @@ class CategoryStoreDataImportBusinessFactory extends SprykerCategoryDataImportBu
     }
 
     /**
-     * @return \FondOfSpyker\Zed\CategoryStoreDataImport\Dependency\Service\CategoryStoreDataImportToUtilTextInterface
+     *
+     * @return \FondOfSpryker\Zed\CategoryStoreDataImport\Dependency\Service\CategoryStoreDataImportToUtilTextInterface
      */
     protected function getUtilText(): CategoryStoreDataImportToUtilTextInterface
     {

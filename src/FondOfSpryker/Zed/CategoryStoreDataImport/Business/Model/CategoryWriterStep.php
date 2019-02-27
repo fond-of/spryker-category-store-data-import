@@ -44,7 +44,7 @@ class CategoryWriterStep extends SprykerCategoryWriterStep
      * CategoryWriterStep constructor.
      *
      * @param \FondOfSpryker\Zed\CategoryStoreDataImport\Business\Model\Reader\CategoryReaderInterface $categoryReader
-     * @param \FondOfSpryker\Zed\CategoryStoreDataImport\Business\Model\CategoryDataImportToUtilTextInterface $categoryStoreDataImportToUtilText
+     * @param \FondOfSpryker\Zed\CategoryStoreDataImport\Dependency\Service\CategoryStoreDataImportToUtilTextInterface $categoryStoreDataImportToUtilText
      */
     public function __construct(
         CategoryReaderInterface $categoryReader,
@@ -230,7 +230,7 @@ class CategoryWriterStep extends SprykerCategoryWriterStep
     /**
      * @param string $name
      *
-     * @return \Orm\Zed\Store\Persistence\SpyStore
+     * @return int
      */
     protected function getIdStore(string $name)
     {

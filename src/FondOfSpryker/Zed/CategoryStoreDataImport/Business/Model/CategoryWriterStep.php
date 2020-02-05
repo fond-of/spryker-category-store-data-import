@@ -28,7 +28,7 @@ class CategoryWriterStep extends SprykerCategoryWriterStep
 {
     use LoggerTrait;
 
-    const KEY_STORE = 'store';
+    public const KEY_STORE = 'store';
 
     /**
      * @var \FondOfSpryker\Zed\CategoryStoreDataImport\Dependency\Service\CategoryStoreDataImportToUtilTextInterface
@@ -41,8 +41,6 @@ class CategoryWriterStep extends SprykerCategoryWriterStep
     protected $categoryReader;
 
     /**
-     * CategoryWriterStep constructor.
-     *
      * @param \FondOfSpryker\Zed\CategoryStoreDataImport\Business\Model\Reader\CategoryReaderInterface $categoryReader
      * @param \FondOfSpryker\Zed\CategoryStoreDataImport\Dependency\Service\CategoryStoreDataImportToUtilTextInterface $categoryStoreDataImportToUtilText
      */
@@ -50,6 +48,7 @@ class CategoryWriterStep extends SprykerCategoryWriterStep
         CategoryReaderInterface $categoryReader,
         CategoryStoreDataImportToUtilTextInterface $categoryStoreDataImportToUtilText
     ) {
+        parent::__construct($categoryReader, $categoryStoreDataImportToUtilText);
         $this->categoryReader = $categoryReader;
         $this->categoryStoreDataImportToUtilText = $categoryStoreDataImportToUtilText;
     }
@@ -171,6 +170,7 @@ class CategoryWriterStep extends SprykerCategoryWriterStep
             $urlPathParts = explode('/', ltrim($parentUrl, '/'));
             $urlPathParts[] = $categoryAttributesEntity->getName();
         }
+
         return $urlPathParts;
     }
 
@@ -189,7 +189,7 @@ class CategoryWriterStep extends SprykerCategoryWriterStep
             if ($idLocale !== $localeId) {
                 continue;
             }
-            $key = \array_search($localeName, $allowedLocales, true);
+            $key = array_search($localeName, $allowedLocales, true);
             if ($key !== false) {
                 return $key;
             }
@@ -207,8 +207,9 @@ class CategoryWriterStep extends SprykerCategoryWriterStep
         $allowedLocales = [];
         foreach ($storeNames as $storeName) {
             $locales = $store->getLocalesPerStore($storeName);
-            $allowedLocales = \array_merge($allowedLocales, $locales);
+            $allowedLocales = array_merge($allowedLocales, $locales);
         }
+
         return $allowedLocales;
     }
 
@@ -224,6 +225,7 @@ class CategoryWriterStep extends SprykerCategoryWriterStep
             return $slugGenerator->generateSlug($value);
         };
         $urlPathParts = array_map($convertCallback, $urlPathParts);
+
         return $urlPathParts;
     }
 

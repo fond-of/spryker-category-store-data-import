@@ -3,7 +3,6 @@
 namespace FondOfSpryker\Zed\CategoryStoreDataImport\Communication\Plugin;
 
 use FondOfSpryker\Zed\CategoryStoreDataImport\CategoryStoreDataImportConfig;
-
 use Spryker\Zed\CategoryDataImport\Communication\Plugin\CategoryDataImportPlugin as SprykerCategoryDataImportPlugin;
 
 class CategoryStoreDataImportPlugin extends SprykerCategoryDataImportPlugin

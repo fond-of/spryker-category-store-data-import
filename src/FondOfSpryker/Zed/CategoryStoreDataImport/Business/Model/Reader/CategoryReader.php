@@ -9,12 +9,13 @@ use Orm\Zed\Category\Persistence\SpyCategoryQuery;
 use Orm\Zed\Url\Persistence\SpyUrlQuery;
 use Spryker\Shared\Log\LoggerTrait;
 use Spryker\Zed\CategoryDataImport\Business\Model\Reader\CategoryReader as SprykerCategoryReader;
+use Spryker\Zed\PropelOrm\Business\Runtime\ActiveQuery\Criteria;
 
 class CategoryReader extends SprykerCategoryReader implements CategoryReaderInterface
 {
     use LoggerTrait;
 
-    const ID_STORE = 'fk_store';
+    public const ID_STORE = 'fk_store';
 
     /**
      * @var array
@@ -25,10 +26,7 @@ class CategoryReader extends SprykerCategoryReader implements CategoryReaderInte
      * @var array
      */
     protected $categoryUrls;
-
-    /**
-     * CategoryReader constructor.
-     */
+    
     public function __construct()
     {
         $this->categoryKeys = [];
@@ -88,7 +86,6 @@ class CategoryReader extends SprykerCategoryReader implements CategoryReaderInte
     }
 
     /**
-     *
      * @return void
      */
     protected function loadCategoryKeys()

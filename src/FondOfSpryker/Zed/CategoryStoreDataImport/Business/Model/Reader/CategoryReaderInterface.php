@@ -13,4 +13,14 @@ interface CategoryReaderInterface extends SprykerCategoryReaderInterface
      * @return int
      */
     public function getIdCategoryNodeByCategoryKeyAndIdStore($categoryKey, $idStore);
+
+    /**
+     * @param string $categoryKey
+     * @param int $idLocale
+     *
+     * @throws \FondOfSpryker\Zed\CategoryStoreDataImport\Business\Exception\CategoryByKeyAndStoreNotFoundException
+     *
+     * @return string
+     */
+    public function getParentUrlByCategoryKeyLocaleAndStore($categoryKey, $idLocale, $idStore);
 }

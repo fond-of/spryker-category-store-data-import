@@ -57,7 +57,6 @@ class CategoryStoreDataImportBusinessFactory extends SprykerCategoryDataImportBu
     }
 
     /**
-     *
      * @return \FondOfSpryker\Zed\CategoryStoreDataImport\Dependency\Service\CategoryStoreDataImportToUtilTextInterface
      */
     protected function getUtilText(): CategoryStoreDataImportToUtilTextInterface

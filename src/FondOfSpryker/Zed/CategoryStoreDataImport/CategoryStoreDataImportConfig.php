@@ -6,7 +6,7 @@ use Spryker\Zed\CategoryDataImport\CategoryDataImportConfig as SprykerCategoryDa
 
 class CategoryStoreDataImportConfig extends SprykerCategoryDataImportConfig
 {
-    const IMPORT_TYPE_CATEGORY_WITH_STORE = 'category-with-store';
+    public const IMPORT_TYPE_CATEGORY_WITH_STORE = 'category-with-store';
 
     /**
      * @return \Generated\Shared\Transfer\DataImporterConfigurationTransfer
